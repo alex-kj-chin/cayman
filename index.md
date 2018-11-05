@@ -31,9 +31,9 @@ Similarly, the five most popular stations for departure were
 
 One might notice that there is a good amount of overlap between the most common points of departure and arrival. In fact, 9 of the top 10 arrival and departure locations are shared. This makes a lot of sense, ass individuals who depart from one location and arrive at another are likely to later depart from their initial arrival station and arrive at their initial departure station (round trips will be a slight confounding factor here, but clearly not too large). I also chose to do a general aggregation of the data. Below I present histograms of the number of arrivals and departures
 
-![departures_hist](./img/departure_hist.png)
+![departures_hist](/assets/departure_hist.png)
 
-![arrivals_hist](./img/arrivals_hist.png)
+![arrivals_hist](/assets/arrivals_hist.png)
 
 #### Header 4
 
