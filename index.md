@@ -43,7 +43,9 @@ We see that overall there are a couple of stations with higher arrival and depar
 
 ## Number of Riders Including Bike Sharing as Regular Part of Commute
 
-Examining the provided data, we see that riders have one of four types of passes: Monthly Pass, Flex Pass, Walk-up, and Staff Annual. Of these, we presume that (as was noted on the MindSumo website) that the Walk-Up users are temporary or sporadic users, whereas the other three categories represent more regular users.
+Examining the provided data, we see that riders have one of four types of passes: Monthly Pass, Flex Pass, Walk-up, and Staff Annual. Of these, we presume that (as was noted on the MindSumo website) that the Walk-Up users are temporary or sporadic users, whereas the other three categories represent more regular users. Additionally, since there is no identifying information for bikers, it is assumed that each bike ride represents a single user (also an assumption that was approved on MindSumo)--alternatively, one could attempt to map trips going in opposite directions in the morning and evening to a single person, but this could end up confounding results more than helping if done poorly. As a final assumption, we calculate the regular ridership as a daily occurence, and when a bike rentalcrosses between two days, we allocate it to the day it started on. It is important to state assumptions in data analysis as sometimes only slight differences in assumptions cause major differences in results.
+
+
 
 ###### Header 6
 
