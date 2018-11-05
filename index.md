@@ -5,11 +5,11 @@ The code used to make these findings can be found [here](https://github.com/alex
 
 # Questions (1-4)
 
-The following subsections are organized so as to match up to Questions 1-4 on the MindSumo website and facillitate ease of checking the requirements ahve been met.
+The following subsections are organized so as to match up to Questions 1-4 on the MindSumo website and facillitate ease of checking the requirements have been met.
 
 ## Data Visualizations
 
-Asside from the guidelines of the project, I was interested in investigating how the usage broke down by day of the week. The first thing I investigated was simply the number of rides by day of the week
+Asside from the guidelines of the project, I was interested in investigating how the usage broke down by day of the week. The first thing I investigated was simply the number of rides by day of the week.
 
 ![weekday_usage](/assets/weekday_usage.png)
 
@@ -21,17 +21,17 @@ Interestingly here, we see that there are about double the number of Walk-Up rid
 
 ![duration_usage](/assets/duration_usage.png)
 
-The next facet of the problem I wanted to investigate was bike mileage. My expectation was that the distribution of mileages would semi-gaussian but with a large pileup at a certain mileage where bikes start to break down. I calculated bike mileages with a similar schema to how I calculate average distance traveled (see that section for more information on the methodology). I found the below graph
+The next facet of the problem I wanted to investigate was bike mileage. My expectation was that the distribution of mileages would semi-gaussian but with a large pileup at a certain mileage where bikes start to break down. I calculated bike mileages with a similar schema to how I calculate average distance traveled (see that section for more information on the methodology). I found the below graph.
 
 ![bike_miles](/assets/bike_mileages.png)
 
-As expected, the distribution was relatively normal, but contrary to my expectation, there does not seem to be an evident pileup. I find two possible explanation. The first is that since this data is only . The second is that bikes can be repaired to extend their lifetime almost infinitely, and when they are reentered into the system with the same Bike ID. This means there is no real cutoff on bike lifetimes--if this is the case, LA Metro might consider reentering bikes with a new ID so that it is easier to do analyses of bike lifetimes to estimate repair costs and the like.
+As expected, the distribution was relatively normal, but contrary to my expectation, there does not seem to be an evident pileup. I find two possible explanations. The first is that since this data is only for a small time period, there has not been enough time for bikes to accumulate enough mileage to be retired. The second is that bikes can be repaired to extend their lifetime almost infinitely, and they are reentered into the system with the same Bike ID. This means there is no real cutoff on bike lifetimes--if this is the case, LA Metro might consider reentering bikes with a new ID so that it is easier to do analyses of bike lifetimes to estimate repair costs and the like.
 
 Often companies want to see where their revenue sources are coming from. The revenue model for LA Metro is broken down into subscription fees and fees for rides over 30 minutes. Since the data was lacking user ids or other information to identify unique users, I chose to only visualize the fees occuring from rides over 30 minutes long (otherwise the validity of my analysis might be compromised). We will see that just visualizing a single part of the revenue model is enough to motivate policy recommendations. Below is a pie chart of where the fees for rides over 30 minutes (henceforth referred to as overtime charges) are from.
 
 ![rev_pie](/assets/revenue_pie.png)
 
-We see that the majority are from Walk-Up customers. In fact, about $85,150 overtime charges come from Walk-Up customers, while the second largest--Monthly Pass--only accounts for a little over $23,000. An interesting follow-up question is to see if a small number of Walk-Up customers are taking extremely long rides or if in general Walk-Up customers are just more likely to go over the 30 minute limit. Below is a pie chart of all the overtime customers, how many of them come from each segment (the chart above is the percentage of overtime revenue derived from each segment).
+We see that the majority are from Walk-Up customers. In fact, about $85,150 overtime charges come from Walk-Up customers, while the second largest--Monthly Pass--only accounts for a little over $23,000. An interesting follow-up question is to see if a small number of Walk-Up customers are taking extremely long rides or if in general Walk-Up customers are just more likely to go over the 30 minute limit. Below is a pie chart of the overtime customers broken down by passholder type (the chart above is the percentage of overtime revenue derived from each segment).
 
 ![overtime_pie](/assets/overtime_pie.png)
 
@@ -53,13 +53,13 @@ The five most popular stations for arrival were
 
 Similarly, the five most popular stations for departure were
 
-1. 3rd & Rose(4.4%, 24.1 per day)
+1. 3rd & Rose (4.4%, 24.1 per day)
 2. Broadway & 3rd (3.5%, 19.3 per day)
 3. Main & 1st (3.5%, 18.9 per day)
 4. 7th & Flower (3.4%, 18.3 per day)
 5. Traction & Rose (3.4%, 18.2 per day)
 
-One might notice that there is a good amount of overlap between the most common points of departure and arrival. In fact, all 10 arrival and departure locations are the same. This makes a lot of sense, as individuals who depart from one location and arrive at another are likely to later depart from their initial arrival station and arrive at their initial departure station. I also chose to do a general aggregation of the data. Below I present histograms of the number of arrivals and departures (data is binned into 50 subdivisions)
+One might notice that there is a good amount of overlap between the most common points of departure and arrival. In fact, all of the top 10 arrival and departure locations are the same. This makes a lot of sense, as individuals who depart from one location and arrive at another are likely to later depart from their initial arrival station and arrive at their initial departure station in a later trip. I also chose to do a general aggregation of the data. Below I present histograms of the number of arrivals and departures (data is binned into 50 subdivisions)
 
 ![departures_hist](/assets/departure_hist.png)
 
@@ -69,9 +69,9 @@ We see that overall there are a couple of stations with higher arrival and depar
 
 ## Average Distance Traveled
 
-Before doing anything, I cleane the data here. There were a couple of trips where the latitude and longitude data were incorrect. This resulted in ride distances of thousands of miles, which were clearly incorrect.
+Before doing anything, I clean the data here. There were a couple of trips where the latitude and longitude data were incorrect. This resulted in ride distances of thousands of miles, which were clearly incorrect.
 
-The methodology here was to use the distance between stations as the distance traveled on a bike ride. However, an issue arrises when a round trip is registered. My initial idea was to utilize the non-round-trips to calculate the average speed for a biker and then for round trips multiply the trip duration by the average speed of a biker to get the distance traveled on that trip. However, this resulted in non-round trips having an average distance of close to 1.2 miles and round trips having an average distance of close to 12 miles (we would expect to this to be about double, but a factor of 4 is a little much). Furthermore, this method of calculation resulte in trips of over 300 miles. The main issue is that sometimes a person who rents a bike for a round trip may take it to somewhere there is not a nearby bike station, so they may lock it somewhere where they go to work, and then all of this time is being treated as riding time by my first counting schema.
+The methodology here was to use the distance between stations as the distance traveled on a bike ride. However, an issue arrises when a round trip is registered. My initial idea was to utilize the non-round-trips to calculate the average speed for a biker and then for round trips multiply the trip duration by the average speed of a biker to get the distance traveled on that trip. However, this resulted in non-round trips having an average distance of close to 1.2 miles and round trips having an average distance of close to 12 miles (we would expect to this to be about double, but a factor of 10 is a little much). Furthermore, this method of calculation resulted in trips of over 300 miles. The main issue is that sometimes a person who rents a bike for a round trip may take it to somewhere there is not a nearby bike station, so they may lock it somewhere where they go to work, and then all of this time is being treated as riding time by my first counting schema.
 
 Thus, I modified my counting schema to impose a maximum on the round-trip time. After conducting [research](https://mobilitylab.org/2017/02/27/how-far-bike-work/), it seems that it is unreasonable to bike more than about 20 miles per day to work so I imposed this as a maximum on round trip distances (there will most likely be some outliers cut off by this maximum, but the fundamental idea is that it is a better representation of the data because it makes the majority of the data points more accurate). After imposing this bound, I saw that the average distance traveled was **1.4** miles.
 
@@ -79,7 +79,7 @@ To those who object that the error handling here is a too rough, I would point o
 
 ## Number of Riders Including Bike Sharing as Regular Part of Commute
 
-Examining the provided data, we see that riders have one of four types of passes: Monthly Pass, Flex Pass, Walk-up, and Staff Annual. Of these, we presume that (as was noted on the MindSumo website) that the Walk-Up users are temporary or sporadic users, whereas the other three categories represent more regular users. Additionally, since there is no identifying information for bikers, it is assumed that each bike ride represents a single user (also an assumption that was approved on MindSumo)--alternatively, one could attempt to map trips going in opposite directions in the morning and evening to a single person, but this could end up confounding results more than helping if done poorly. As a final assumption, we calculate the regular ridership as a daily occurence, and when a bike rentalcrosses between two days, we allocate it to the day it started on. It is important to state assumptions in data analysis as sometimes only slight differences in assumptions cause major differences in results.
+Examining the provided data, we see that riders have one of four types of passes: Monthly Pass, Flex Pass, Walk-up, and Staff Annual. Of these, we presume that (as was noted on the MindSumo website) the Walk-Up users are temporary or sporadic users, whereas the other three categories represent more regular users. Additionally, since there is no identifying information for bikers, it is assumed that each bike ride represents a single user (also an assumption that was approved on MindSumo)--alternatively, one could attempt to map trips going in opposite directions in the morning and evening to a single person, but this could end up confounding results more than helping if done poorly. As a final assumption, we calculate the regular ridership as a daily occurence, and when a bike rental crosses between two days, we allocate it to the day it started on. It is important to state assumptions in data analysis as sometimes only slight differences in assumptions cause major differences in results.
 
 We see that the average number of bike sharing users per day is about **340**. However, the standard deviation of users per day is **127**, which is exceptionally high. In fact, if we graph the daily ridership, we see that this is highly volatile. We would expect overall fluctuation over time of ridership (as accompanying bike stations have opened and closed), but even within this long-term variation, there is a high amount of variation.
 
@@ -89,7 +89,7 @@ One possible cause is that there is variability over the days of the week. We ca
 
 ![weekly_bike_usage](/assets/bike_usage_weekly_no.png)
 
-We can at least check our assumption here that excluding the Walk-Up riders . Indeed, we see in the graph below the weekly "ridership" including Walk-Up riders is much more variant (and the variance is also higher). Thus, it was a good assumption to exclude Walk-Up riders in the counting of regular users.
+We can at least check our assumption here that excluding the Walk-Up riders is a truer refleciton of the quantity we are trying to measure. Indeed, we see in the graph below the weekly "ridership" including Walk-Up riders is much more variant (implying that Walk-Up users are not regular). Thus, it was a good assumption to exclude Walk-Up riders in the counting of regular users.
 
 ![weekly_bike_total](/assets/bike_usage_weekly.png)
 
@@ -109,11 +109,11 @@ We see that higher ride rates in the summer are driven both by increased riders 
 
 ## Net Change in Bikes
 
-In order to calculate the net change in bikes, I calculated this value for each day independently. It is important to calculate this by day instead of aggregating becuase if bike gain/loss is high variance but eventually comes out to zero, it may look stable in the long run, but still be a problem in the short run. Moreover, even if bike gain/loss skews in a certain direction, if variance is high enough, the bikes that LA Metro must move around each day may be variant. We see that this is the case in the below graph. Each bar represents the average daily bike gain/loss of a station. The gray bars represent one standard deviation in either direction.
+In order to calculate the net change in bikes, I calculated this value for each day independently. It is important to calculate this by day instead of aggregating becuase if bike gain/loss is high variance but eventually comes out to zero, it may look stable in the long run, but still be a problem in the short run. Moreover, even if bike gain/loss skews in a certain direction, if variance is high enough, the bikes that LA Metro must move around at the end of each day to keep stations stocked may be variant. We see that this is the case in the below graph. Each bar represents the average daily bike gain/loss of a station. The gray bars represent one standard deviation in either direction.
 
 ![bike_delta](/assets/bike_gain.png)
 
-Perhaps the most surprising thing is that for only 3 stations is the bike gain/loss within one standard deviation of the mean always possitive or negative (and in two of these cases, the standard deviation is basically as big as the mean). In other words, for the other staions, we cannot even reliably garuntee that a station will have bike gain or bike loss. One might object that if bike gain/loss is not normally distributed (or at least don't follow a distribution that is on both sides of zero), then it could have a high standard deviation that represents a long possitive or negative tail. However, the below graph of histograms of bike gain/loss in the stations shows that for most stations, they have both days of bike gain and days of bike loss.
+Perhaps the most surprising thing is that for only 3 stations is the bike gain/loss within one standard deviation of the mean always possitive or negative (and in two of these cases, the standard deviation is basically as big as the mean). In other words, for most staions, we cannot even reliably garuntee that a station will have bike gain or bike loss. One might object that if bike gain/loss is not normally distributed (or at least don't follow a distribution that is on both sides of zero), then it could have a high standard deviation that represents a long possitive or negative tail. However, the below graph of histograms of bike gain/loss in the stations shows that for most stations, they have both days of bike gain and days of bike loss.
 
 ![overall](/assets/overall_hist.png)
 
@@ -121,7 +121,7 @@ To be clear, this in no way mean that bike reallocation is an unsolvable problem
 
 1. Grand & 3rd, which loses about 8.5 bikes a day (with a standard deviation of 4.8)
 
-We also see that the "Virtual Station" gains about 5 bikes per day (with a standard deviation of 2.7). However, as the [docs](https://bikeshare.metro.net/about/data/) tell us, the virtual station is used when LA Metro staff have to check in or out a bike that otherwise would not be returned to a station. It is possible that this contributes to the redistribution of bikes, but this still would not account for the extreme variance we see in the data. Thus, we see overall, there is one station that consistently loses bikes, but most of the other stations are relatively variante.
+We also see that the "Virtual Station" gains about 5 bikes per day (with a standard deviation of 2.7). However, as the [docs](https://bikeshare.metro.net/about/data/) tell us, the virtual station is used when LA Metro staff have to check in or out a bike that otherwise would not be returned to a station. It is possible that this contributes to the redistribution of bikes, but this still would not account for the extreme variance we see in the data. Thus, we see overall, there is one station that consistently loses bikes, but most of the other stations are relatively variant day-to-day.
 
 ## Trip Route Category-Passholder
 
