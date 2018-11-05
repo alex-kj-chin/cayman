@@ -1,41 +1,33 @@
 ---
 layout: default
 ---
+The code used to make these findings can be found [here](https://github.com/alex-kj-chin/capital_one_challenge).
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+# Questions (1-4)
 
-[Link to another page](./another-page.html).
+The following subsections are organized so as to match up to Questions 1-4 on the MindSumo website and facillitate ease of checking the requirements ahve been met.
 
-There should be whitespace between paragraphs.
+## Data Visualizations
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+A variety of other visualizations will be provided to answer questions throughout.
 
-# Header 1
+### Start/Stop Stations Popularity
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+I chose to cross-reference the keys in the provided data set with the [station metadata](https://bikeshare.metro.net/about/data/) so as to be able to provide the plain-text names of the most popular stations. The five most popular stations for arrival were
 
-## Header 2
+1. 7th & Flower (4.7%, 6262 total)
+2. 7th & Spring (4.2%, 5517 total)
+3. Union Station West Portal (4.1%, 5385 total)
+4. 1st & Central (4%, 5293 total)
+5. Broadway & 3rd (3.8%, 5072 total)
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+Similarly, the five most popular stations for departure were
 
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+1. Broadway & 3rd (3.9%, 5138 total)
+2. Main & 1st (3.8%, 5059 total)
+3. 7th & Flower (3.7%, 4883 total)
+4. Grand & 7th (3.5%, 4661 total)
+5. 7th & Spring (3.5%, 4629 total)
 
 #### Header 4
 
