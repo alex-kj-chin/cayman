@@ -21,9 +21,13 @@ Interestingly here, we see that there are about double the number of Walk-Up rid
 
 ![duration_usage](/assets/duration_usage.png)
 
-The next facet of the problem I wanted to investigate was bike mileage.
+The next facet of the problem I wanted to investigate was bike mileage. My expectation was that the distribution of mileages would semi-gaussian but with a large pileup at a certain mileage where bikes start to break down. I calculated bike mileages with a similar schema to how I calculate average distance traveled (see that section for more information on the methodology). I found the below graph
 
-Often companies want to see where their revenue sources are coming from. In the below visualization, I present
+![bike_miles](/assets/bike_mileages.png)
+
+As expected, the distribution was relatively normal, but contrary to my expectation, there does not seem to be an evident pileup. I find two possible explanation. The first is that since this data is only . The second is that bikes can be repaired to extend their lifetime almost infinitely, and when they are reentered into the system with the same Bike ID. This means there is no real cutoff on bike lifetimes--if this is the case, Metro LA might consider reentering bikes with a new ID so that it is easier to do analyses of bike lifetimes to estimate repair costs and the like.
+
+Often companies want to see where their revenue sources are coming from. The revenue model for Metro LA is broken down into subscription fees and fees for rides over 30 minutes. Since the data was lacking user ids or other information to identify unique users, I chose to only visualize the fees occuring from rides over 30 minutes long (otherwise the validity of my analysis might be compromised).
 
 A variety of other visualizations will be provided to answer questions throughout.
 
@@ -57,11 +61,13 @@ We see that overall there are a couple of stations with higher arrival and depar
 
 ## Average Distance Traveled
 
-The methodology here was to use the distance between stations as the distance traveled on a bike ride. However, an issue arrises when a round trip is registered. My initial idea was to utilize the non-round-trips to calculate the average speed for a biker and then for round trips multiply the trip duration by the average speed of a biker to get the distance traveled on that trip. However, this resulted in non-round trips having an average distance of close to 3 miles and round trips having an average distance of close to 12 miles (we would expect to this to be about double, but a factor of 4 is a little much). Furthermore, this method of calculation resulte in trips of over 300 miles. The main issue is that sometimes a person who rents a bike for a round trip may take it to somewhere there is not a nearby bike station, so they may lock it somewhere where they go to work, and then all of this time is being treated as riding time by my first counting schema.
+Before doing anything, I cleane the data here. There were a couple of trips where the latitude and longitude data were incorrect. This resulted in ride distances of thousands of miles, which were clearly incorrect.
 
-Thus, I modified my counting schema to impose a maximum on the round-trip time. After conducting [research](https://mobilitylab.org/2017/02/27/how-far-bike-work/), it seems that it is unreasonable to bike more than about 20 miles per day to work so I imposed this as a maximum on round trip distances (there will most likely be some outliers cut off by this maximum, but the fundamental idea is that it is a better representation of the data because it makes the majority of the data points more accurate). After imposing this bound, I saw that the average distance traveled was **3.8** miles.
+The methodology here was to use the distance between stations as the distance traveled on a bike ride. However, an issue arrises when a round trip is registered. My initial idea was to utilize the non-round-trips to calculate the average speed for a biker and then for round trips multiply the trip duration by the average speed of a biker to get the distance traveled on that trip. However, this resulted in non-round trips having an average distance of close to 1.2 miles and round trips having an average distance of close to 12 miles (we would expect to this to be about double, but a factor of 4 is a little much). Furthermore, this method of calculation resulte in trips of over 300 miles. The main issue is that sometimes a person who rents a bike for a round trip may take it to somewhere there is not a nearby bike station, so they may lock it somewhere where they go to work, and then all of this time is being treated as riding time by my first counting schema.
 
-To those who object that the error handling here is a too rough, I would point out that less than 10% of the data represents round trips, and only about 1% of data represents round trips that were of length >20 miles. Thus, even if I were to increase the maximum round trip distance to 50, this only increased the average distance traveled to **4** miles (this is also because many trips are less than a mile, so they greatly drag down the average).
+Thus, I modified my counting schema to impose a maximum on the round-trip time. After conducting [research](https://mobilitylab.org/2017/02/27/how-far-bike-work/), it seems that it is unreasonable to bike more than about 20 miles per day to work so I imposed this as a maximum on round trip distances (there will most likely be some outliers cut off by this maximum, but the fundamental idea is that it is a better representation of the data because it makes the majority of the data points more accurate). After imposing this bound, I saw that the average distance traveled was **1.4** miles.
+
+To those who object that the error handling here is a too rough, I would point out that less than 10% of the data represents round trips, and only about 1% of data represents round trips that were of length >20 miles. Thus, even if I were to increase the maximum round trip distance to 50, this only increased the average distance traveled to **1.6** miles (this is also because many trips are less than a mile, so they greatly drag down the average).
 
 ## Number of Riders Including Bike Sharing as Regular Part of Commute
 
