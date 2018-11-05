@@ -11,6 +11,8 @@ The following subsections are organized so as to match up to Questions 1-4 on th
 
 A variety of other visualizations will be provided to answer questions throughout.
 
+Often companies want to see where their revenue sources are coming from. In the below visualization, I present
+
 ### Start/Stop Stations Popularity
 
 I chose to cross-reference the keys in the provided data set with the [station metadata](https://bikeshare.metro.net/about/data/) so as to be able to provide the plain-text names of the most popular stations. Since different stations were opened at different times (and some have since closed), it is not sufficient to simply sum the arrivals and departures. Instead, we should find the average number of arrivals and departures per day for each station. Thus, I ran through the data to keep track of arrivals, departures, and opening and closing dates of stations (calculated as first and last recorded trip). These were used to calculate the stations with highest arrival and departure rates.
@@ -40,6 +42,12 @@ One might notice that there is a good amount of overlap between the most common 
 We see that overall there are a couple of stations with higher arrival and departure rates, but the majority of stations have a relatively lower arrival and departure rates. It is also helpful to see these laid out geographically
 
 ## Average Distance Traveled
+
+The methodology here was to use the distance between stations as the distance traveled on a bike ride. However, an issue arrises when a round trip is registered. My initial idea was to utilize the non-round-trips to calculate the average speed for a biker and then for round trips multiply the trip duration by the average speed of a biker to get the distance traveled on that trip. However, this resulted in non-round trips having an average distance of close to 3 miles and round trips having an average distance of close to 12 miles (we would expect to this to be about double, but a factor of 4 is a little much). Furthermore, this method of calculation resulte in trips of over 300 miles. The main issue is that sometimes a person who rents a bike for a round trip may take it to somewhere there is not a nearby bike station, so they may lock it somewhere where they go to work, and then all of this time is being treated as riding time by my first counting schema.
+
+Thus, I modified my counting schema to impose a maximum on the round-trip time. After conducting [research](https://mobilitylab.org/2017/02/27/how-far-bike-work/), it seems that it is unreasonable to bike more than about 20 miles per day to work so I imposed this as a maximum on round trip distances (there will most likely be some outliers cut off by this maximum, but the fundamental idea is that it is a better representation of the data because it makes the majority of the data points more accurate). After imposing this bound, I saw that the average distance traveled was **3.8** miles.
+
+To those who object that the error handling here is a too rough, I would point out that less than 10% of the data represents round trips, and only about 1% of data represents round trips that were of length >20 miles. Thus, even if I were to increase the maximum round trip distance to 50, this only increased the average distance traveled to **4** miles (this is also because many trips are less than a mile, so they greatly drag down the average).
 
 ## Number of Riders Including Bike Sharing as Regular Part of Commute
 
