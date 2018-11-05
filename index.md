@@ -65,7 +65,7 @@ One might notice that there is a good amount of overlap between the most common 
 
 ![arrivals_hist](/assets/arrivals_hist.png)
 
-We see that overall there are a couple of stations with higher arrival and departure rates, but the majority of stations have a relatively lower arrival and departure rates. It is also helpful to see these laid out geographically
+We see that overall there are a couple of stations with higher arrival and departure rates, but the majority of stations have a relatively lower arrival and departure rates.
 
 ## Average Distance Traveled
 
