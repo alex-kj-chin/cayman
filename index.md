@@ -25,9 +25,17 @@ The next facet of the problem I wanted to investigate was bike mileage. My expec
 
 ![bike_miles](/assets/bike_mileages.png)
 
-As expected, the distribution was relatively normal, but contrary to my expectation, there does not seem to be an evident pileup. I find two possible explanation. The first is that since this data is only . The second is that bikes can be repaired to extend their lifetime almost infinitely, and when they are reentered into the system with the same Bike ID. This means there is no real cutoff on bike lifetimes--if this is the case, Metro LA might consider reentering bikes with a new ID so that it is easier to do analyses of bike lifetimes to estimate repair costs and the like.
+As expected, the distribution was relatively normal, but contrary to my expectation, there does not seem to be an evident pileup. I find two possible explanation. The first is that since this data is only . The second is that bikes can be repaired to extend their lifetime almost infinitely, and when they are reentered into the system with the same Bike ID. This means there is no real cutoff on bike lifetimes--if this is the case, LA Metro might consider reentering bikes with a new ID so that it is easier to do analyses of bike lifetimes to estimate repair costs and the like.
 
-Often companies want to see where their revenue sources are coming from. The revenue model for Metro LA is broken down into subscription fees and fees for rides over 30 minutes. Since the data was lacking user ids or other information to identify unique users, I chose to only visualize the fees occuring from rides over 30 minutes long (otherwise the validity of my analysis might be compromised).
+Often companies want to see where their revenue sources are coming from. The revenue model for LA Metro is broken down into subscription fees and fees for rides over 30 minutes. Since the data was lacking user ids or other information to identify unique users, I chose to only visualize the fees occuring from rides over 30 minutes long (otherwise the validity of my analysis might be compromised). We will see that just visualizing a single part of the revenue model is enough to motivate policy recommendations. Below is a pie chart of where the fees for rides over 30 minutes (henceforth referred to as overtime charges) are from.
+
+![rev_pie](/assets/revenue_pie.png)
+
+We see that the majority are from Walk-Up customers. In fact, about $85,150 overtime charges come from Walk-Up customers, while the second largest--Monthly Pass--only accounts for a little over $23,000. An interesting follow-up question is to see if a small number of Walk-Up customers are taking extremely long rides or if in general Walk-Up customers are just more likely to go over the 30 minute limit. Below is a pie chart of all the overtime customers, how many of them come from each segment (the chart above is the percentage of overtime revenue derived from each segment).
+
+![overtime_pie](/assets/overtime_pie.png)
+
+This tells us that Walk-Up customers are very likely to incur overtime charges, and it's not just a small subpopulation taking extremely long rides. Either way, this data indicates that LA Metro is most effective in gaining overtime charges from Walk-Up customers, so they should continue to find more opportunities to increase that customer segment.
 
 A variety of other visualizations will be provided to answer questions throughout.
 
