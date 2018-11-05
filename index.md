@@ -45,7 +45,17 @@ We see that overall there are a couple of stations with higher arrival and depar
 
 Examining the provided data, we see that riders have one of four types of passes: Monthly Pass, Flex Pass, Walk-up, and Staff Annual. Of these, we presume that (as was noted on the MindSumo website) that the Walk-Up users are temporary or sporadic users, whereas the other three categories represent more regular users. Additionally, since there is no identifying information for bikers, it is assumed that each bike ride represents a single user (also an assumption that was approved on MindSumo)--alternatively, one could attempt to map trips going in opposite directions in the morning and evening to a single person, but this could end up confounding results more than helping if done poorly. As a final assumption, we calculate the regular ridership as a daily occurence, and when a bike rentalcrosses between two days, we allocate it to the day it started on. It is important to state assumptions in data analysis as sometimes only slight differences in assumptions cause major differences in results.
 
+We see that the average number of bike sharing users per day is about **340**. However, the standard deviation of users per day is **127**, which is exceptionally high. In fact, if we graph the daily ridership, we see that this is highly volatile. We would expect overall fluctuation over time of ridership (as accompanying bike stations have opened and closed), but even within this long-term variation, there is a high amount of variation.
 
+![daily_bike_usage](/assets/bike_usage_daily.png)
+
+One possible cause is that there is variability over the days of the week. We can test this theory by aggregating to get total regular ridership broken down by week. We see that this reduces variance slightly as in the below graph.
+
+![weekly_bike_usage](/assets/bike_usage_weekly_no.png)
+
+We can at least check our assumption here that excluding the Walk-Up riders . Indeed, we see in the graph below the weekly "ridership" including Walk-Up riders is much more variant (and the variance is also higher). Thus, it was a good assumption to exclude Walk-Up riders in the counting of regular users.
+
+![weekly_bike_total](/assets/bike_usage_weekly.png)
 
 ###### Header 6
 
