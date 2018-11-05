@@ -9,9 +9,23 @@ The following subsections are organized so as to match up to Questions 1-4 on th
 
 ## Data Visualizations
 
-A variety of other visualizations will be provided to answer questions throughout.
+Asside from the guidelines of the project, I was interested in investigating how the usage broke down by day of the week. The first thing I investigated was simply the number of rides by day of the week
+
+![weekday_usage](/assets/weekday_usage.png)
+
+The main takeaway from this graph is that individuals are about 10%-15% more likely to bike on Thursday/Friday than Monday. However, we can add a layer of depth here by examining how many of these rides are Walk-Up (single-day riders).
+
+![walk_usage](/assets/walk_usage.png)
+
+Interestingly here, we see that there are about double the number of Walk-Up riders on the weekend compared to the weekdays (and correspondingly fewer regular riders on the weekends). This makes a lot of sense, as we can see from the LA Metro website, a major [selling point](https://bikeshare.metro.net/buy-in-bulk/) of these Walk-Up passes is that hotels or other tourist-industry businesses can purchase and give them out to guests. Tourists are more likely to come during the weekend, which explains this large difference. Another interesting result appears when we take a look at the duration of the rides as opposed to just the number of rides. Although the number of rides taken during the weekend is only slightly more than those taken during the week, the total duration of those rides is substantially higher (more than double). Since individuals have more time to bike on the weekends, this makes sense. A secondary cause may be that since tourists are only biking once--as opposed to commuting every day to work--they are more likely to take one long bike ride (people who need to commute a long distance every weekday may switch to other methods of transportation due to fatigue).
+
+![duration_usage](/assets/duration_usage.png)
+
+The next facet of the problem I wanted to investigate was bike mileage.
 
 Often companies want to see where their revenue sources are coming from. In the below visualization, I present
+
+A variety of other visualizations will be provided to answer questions throughout.
 
 ### Start/Stop Stations Popularity
 
