@@ -97,6 +97,25 @@ We can at least check our assumption here that excluding the Walk-Up riders . In
 
 ## Ridership Change over Seasons
 
+We see, as expected, that there is high variance in bike usage depending on season. First, we calculate the nuber of riders per day in different seasons. Since the timeframe is not uniformly distributed accross the seasons, it's important to normalize over the number of days in each season in our data set. Nonetheless, we see that summer is by far the most popular season to use LA Metro for bike rides.
+
+![seasonal_usage](/assets/bike_usage_seasonally.png)
+
+Next, we want to look at the types of memberships used during the seasons. We exclude the Annual Staff usage because this is rare--so rare in fact that it does not occur meaningfully during the 11 days of spring included in the dataset.
+
+![seasonal_stacked](/assets/seasonal_stacked.png)
+
+We see that higher ride rates in the summer are driven both by increased riders using their monthly passes and walk-up. This makes sesnse, as locals with more time will be more likely to purchase monthly passes, and tourists visiting during the summer will be more likely to purchase walk-up tickets.
+
 ## Net Change in Bikes
 
+
+
 ## Trip Route Category-Passholder
+
+A good way to view the intersection of various different labels is a heatmap. I use seaborn to generate the following heatmap to visualize the common intersections between Trip-Route Category and Passholder.
+
+![heatmap](/assets/heatmap.png)
+
+By far the most common combination is monthly users taking one-way trips. This makes sense, as the majority of users are monthly users, and in general they use their bikes to get to and from the place they are commuting, but rack the bikes in between. The other popular one-way trip user are walk-up users. Since this is the second biggest customer segment (in terms of numbers of rides), it makes sense that this is also a popular combination. It is hard to distinguish, but the only relevant intersection with round-trip users is walk-up users. This supports our findings on revenue sources (from the **Data Visualizations** section), as round-trips are more likely to run overtime charge since they are in general longer. More interestingly, even though the monthly users are the biggest segment, they are not the most likely to do round trips. This makes sense because if you take a round-trip, then either **A)** you don't get anywhere which is only useful for tourists or **B)** there is no station near where you are commuting so you pay exhorbitant overtime charges. Neither of these are prefereable situations, so an individual would not be incentivized to buy a monthly pass if this would be their use case. Thus for round-trips, mostly we see walk-up users.
+
