@@ -109,7 +109,19 @@ We see that higher ride rates in the summer are driven both by increased riders 
 
 ## Net Change in Bikes
 
+In order to calculate the net change in bikes, I calculated this value for each day independently. It is important to calculate this by day instead of aggregating becuase if bike gain/loss is high variance but eventually comes out to zero, it may look stable in the long run, but still be a problem in the short run. Moreover, even if bike gain/loss skews in a certain direction, if variance is high enough, the bikes that LA Metro must move around each day may be variant. We see that this is the case in the below graph. Each bar represents the average daily bike gain/loss of a station. The gray bars represent one standard deviation in either direction.
 
+![bike_delta](/assets/bike_gain.png)
+
+Perhaps the most surprising thing is that for only 3 stations is the bike gain/loss within one standard deviation of the mean always possitive or negative (and in two of these cases, the standard deviation is basically as big as the mean). In other words, for the other staions, we cannot even reliably garuntee that a station will have bike gain or bike loss. One might object that if bike gain/loss is not normally distributed (or at least don't follow a distribution that is on both sides of zero), then it could have a high standard deviation that represents a long possitive or negative tail. However, the below graph of histograms of bike gain/loss in the stations shows that for most stations, they have both days of bike gain and days of bike loss.
+
+![overall](/assets/overall_hist.png)
+
+To be clear, this in no way mean that bike reallocation is an unsolvable problem. It just means that we need to look at bike gain/loss at the end of the day to make a day-by-day evaluation. We can even use past averages to estimate the likelihood of needing to move bikes--the above results just say we should check against each day's data since daily variance can swing historical calculations. There is, however, one stations that very consistently has bike loss.
+
+1. Grand & 3rd, which loses about 8.5 bikes a day (with a standard deviation of 4.8)
+
+We also see that the "Virtual Station" gains about 5 bikes per day (with a standard deviation of 2.7). However, as the [docs](https://bikeshare.metro.net/about/data/) tell us, the virtual station is used when LA Metro staff have to check in or out a bike that otherwise would not be returned to a station. It is possible that this contributes to the redistribution of bikes, but this still would not account for the extreme variance we see in the data. Thus, we see overall, there is one station that consistently loses bikes, but most of the other stations are relatively variante.
 
 ## Trip Route Category-Passholder
 
